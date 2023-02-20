@@ -6,7 +6,7 @@
 /*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:47:40 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:51:18 by mumutlu          ###   ########.fr       */
+/*   Updated: 2023/02/20 16:54:24 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ int	ft_tolower(int c)
 		return (c);
 }
 
-/* #include <stab.h>
+/* #include <stdio.h>
 
-int	main()
+int main()
 {
-	int i = char c[] = "muhammet";
-	printf("%s",ft_tolower(i));
+	char	c = 'A';
+	int		i = c;
+	printf("%c", ft_tolower(i));
+	return 0;
 } */
 
-// Fonksiyona girilen parametre değerini küçük harf ise büyütür,
+// Fonksiyona girilen parametre değerini büyük harf ise küçültür,
 // büyük harf ise olduğu gibi döndürür.

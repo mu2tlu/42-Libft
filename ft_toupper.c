@@ -6,7 +6,7 @@
 /*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:48:34 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 14:29:19 by mumutlu          ###   ########.fr       */
+/*   Updated: 2023/02/20 16:55:38 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	ft_toupper(int c)
 		return (c);
 }
 
-/* #include <stab.h>
+/* #include <stdio.h>
 
-int	main()
+int main()
 {
-	char c[] = 'A';
-	int i;
-	i = c;
-	printf("%d",ft_tolower(i));
+	char	c = 'a';
+	int		i = c;
+	printf("%c", ft_toupper(i));
+	return 0;
 } */
 
-// Fonksiyona girilen parametre değerini büyük harf ise küçültür,
+// Fonksiyona girilen parametre değerini küçük harf ise büyütür,
 // küçük harf ise olduğu gibi döndürür.
