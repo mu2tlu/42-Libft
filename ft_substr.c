@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 13:00:15 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 15:08:38 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:47:40 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:47:41 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,17 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*final;
+	char	*str;
 
-	if (s)
-	{
-		if (start >= ft_strlen(s) || len == 0 || ft_strlen(s) == 0)
-			return (ft_strdup(""));
-		i = 0;
-		while (i < len && s[i + start] != '\0')
-			i++;
-		final = (char *) malloc((sizeof(char) * i) + 1);
-		if (!(final))
-			return (NULL);
-		j = 0;
-		while (j < i)
-		{
-			final[j] = s[start + j];
-			j++;
-		}
-		final[j] = '\0';
-		return (final);
-	}
-	return (NULL);
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s + start, len + 1);
+	return (str);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-
-int	main(void)
-{
-	char	s[] = "Merhaba42Kocaeli";
-	printf("%s", ft_substr(s, 7, 9));
-} */
-
-// s dizisinde start değeri ile başlanıp len değerine kadar
-// bellekte yer açar ve s dizisinden kopyalar.

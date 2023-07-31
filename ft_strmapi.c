@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:47:26 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:47:28 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:46:37 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:46:38 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,16 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*str;
 
 	if (!s || !f)
-		return (NULL);
-	i = 0;
-	str = (char *) ft_calloc(ft_strlen(s) + 1, sizeof(char));
+		return (0);
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!str)
-		return (NULL);
+		return (0);
+	i = 0;
 	while (s[i])
 	{
 		str[i] = f(i, s[i]);
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
-
-/* #include <stdio.h>
-
-char	ft_42(unsigned int a,char c)
-{
-	return(ft_toupper(c));
-}
-
-int main()
-{
-	char s[] = "merhaba";
-	char *str;
-	str = ft_strmapi(s,ft_42);
-
-	printf("%s",str);
-} */
-
-// ft_calloc fonksiyonu ile bellekte yer açılır ve "s" parametresinden gelen
-// karakter dizisinin her indisine "f" parametresindeki fonksiyon uygulanır.

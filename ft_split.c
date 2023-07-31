@@ -3,77 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/19 16:20:51 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 15:20:37 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:45:40 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:45:41 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	wordcounter(const char *s, char delimiter)
+static int	ft_wordcount(char const *s, char c)
 {
-	unsigned int	word;
+	int	i;
+	int	count;
 
-	word = 0;
-	while (*s)
+	i = 0;
+	count = 0;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] != '\0')
 	{
-		if (*s == delimiter)
-			s++;
-		else
-		{
-			while (*s != delimiter && *s)
-				s++;
-			word++;
-		}
+		if ((s[i] != c && s[i + 1] == c) || (s[i] != c && s[i + 1] == '\0'))
+			count++;
+		i++;
 	}
-	return (word);
+	return (count);
+}
+
+static int	ft_wordlen(char const *s, char c)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] != c && s[i] != '\0')
+	{
+		len++;
+		i++;
+	}
+	return (len);
+}
+
+static char	**ft_free(char **str, int i)
+{
+	while (i >= 0)
+	{
+		free(str[i]);
+		i--;
+	}
+	free(str);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char			**arr;
-	unsigned int	j;
-	unsigned int	a;
+	char	**str;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	if (!s)
 		return (NULL);
-	arr = (char **) ft_calloc(wordcounter(s, c) + 1, sizeof(char *));
-	if (!arr)
+	str = (char **)malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
+	if (!str)
 		return (NULL);
-	a = 0;
-	while (*s)
+	while (i < ft_wordcount(s, c))
 	{
-		if (*s == c)
-			s++;
-		else
-		{
-			j = 0;
-			while (*s != c && *s && ++j)
-				s++;
-			arr[++a -1] = (char *) ft_calloc(j + 1, sizeof(char));
-			ft_strlcpy(arr[a -1], s - j, j + 1);
-		}
+		while (s[j] == c)
+			j++;
+		str[i] = ft_substr(s, j, ft_wordlen(&s[j], c));
+		if (!str[i])
+			return (ft_free(str, i));
+		j = j + ft_wordlen(&s[j], c);
+		i++;
 	}
-	return (arr);
+	str[i] = NULL;
+	return (str);
 }
-
-/* #include <stdio.h>
-#include <stdlib.h>
-
-int main()
-
-{
-	char arr[] = "abc,def,ghj";
-	int y = ',';
-	char **x;
-	x = ft_split(arr, y);
-	printf("%s",x[1]);
-	printf("%s",x[2]);
-	printf("%s",x[3]);
-} */
-
-// s dizisini c karakteri ile ayırır.
-// "s" parametresinden gelen char dizisini "c" parametresinden gelen
-// karakter ile ayırır.

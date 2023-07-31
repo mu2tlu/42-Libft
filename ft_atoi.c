@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 17:54:03 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:55:29 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:39:17 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:39:21 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,27 @@
 
 int	ft_atoi(const char *str)
 {
-	int	x;
-	int	y;
+	int					i;
+	int					sign;
+	unsigned long int	result;
 
-	x = 1;
-	y = 0;
-	while (*str == '\t' || *str == '\n' || *str == '\v'
-		|| *str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '-')
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
 	{
-		x = x * -1;
-		str++;
+		sign = -1;
+		i++;
 	}
-	else if (*str == '+')
-		str++;
-	if (*str == '-' || *str == '+')
-		return (0);
-	while (*str >= '0' && *str <= '9')
+	else if (str[i] == '+')
+		i++;
+	while (ft_isdigit(str[i]))
 	{
-		y = (y * 10);
-		y = y + (*str - '0');
-		str++;
+		result *= 10;
+		result += str[i] - '0';
+		i++;
 	}
-	return (x * y);
+	return (result * sign);
 }
-
-/* #include <stdio.h>
-
-int	main(void)
-{
-	char	str[] = "-123abc";
-	printf("%d", ft_atoi(str));
-} */
-
-// Parametreden gelen char dizisini int değere çevirir.

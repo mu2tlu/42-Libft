@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:45:53 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:46:17 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:45:30 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:45:31 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	int	i;
+
+	i = 0;
 	if (!s)
 		return ;
-	write(fd, s, ft_strlen(s));
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }
-
-/* #include <fcntl.h>
-
-int main()
-{
-    int fd= open("test.txt",1);
-    ft_putstr_fd("Merhaba 42 Kocaeli",fd);
-} */
-
-// Belirtilen dosya tanımlayıcısına (fd) "s" parametresinden gelen
-// char dizisi yazılır.

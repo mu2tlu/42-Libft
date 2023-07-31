@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:40:03 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 14:46:21 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:43:26 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:43:27 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,29 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*begin;
+	t_list	*str;
+	t_list	*tmp;
+	void	*content;
 
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return (NULL);
-	begin = NULL;
+	str = NULL;
 	while (lst)
 	{
-		new = ft_lstnew((*f)(lst->content));
-		if (!new)
+		content = f(lst->content);
+		if (!content)
+			ft_lstclear(&str, del);
+		if (!content)
+			return (NULL);
+		tmp = ft_lstnew(content);
+		if (!tmp)
 		{
-			ft_lstclear(&begin, del);
+			free(content);
+			ft_lstclear(&str, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&begin, new);
+		ft_lstadd_back(&str, tmp);
 		lst = lst->next;
 	}
-	return (begin);
+	return (str);
 }
-
-/* #include <stdio.h>
-
-void    del(void *content)
-{
-   	free(content);
-}
-
-void *ft_change(void *content)
-{
-	((char *)content)[0] -= 32;
-	return(content);
-}
-
-int main()
-{
-	t_list *node1,*node2;
-	t_list *tmp;
-	node1 = ft_lstnew(ft_strdup("42"));
-	node2 = ft_lstnew(ft_strdup("kocaeli"));
-	ft_lstadd_back(&node1, node2);
-	tmp = ft_lstmap(node1, ft_change, del);
-	printf("**%s**", (char *)tmp->content);
-	printf("%s", (char *)tmp->next->content);
-} */

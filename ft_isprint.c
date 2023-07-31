@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 00:40:46 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:58:24 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:41:49 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:41:55 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126);
+	if (c >= 32 && c <= 126)
+		return (1);
+	else
+		return (0);
 }
-
-/* #include <stdio.h>
-
-int main ()
-{
-    printf("%d", ft_isprint('~'));
-} */
-
-// Fonksiyona girilen parametrenin ekrana
-// yazılıp yazılmadığını döndürür.(0 veya 1 şeklinde)

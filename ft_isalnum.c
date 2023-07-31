@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 23:14:38 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:56:43 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:40:17 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:40:18 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A'
+			&& c <= 'Z'))
 		return (1);
-	return (0);
+	else
+		return (0);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-   printf("%d",ft_isalnum('.'));
-} */
-
-// Fonksiyona girilen parametrenin alfanumerik karakter olup olmadığını
-// döndürür. (0 veya 1 şeklinde)

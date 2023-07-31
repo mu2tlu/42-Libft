@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 23:59:43 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 15:26:16 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:44:41 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:44:42 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	if (!dst && !src)
-		return (NULL);
-	if (dst < src)
-		ft_memcpy(dst, src, n);
-	else if (dst > src)
+	unsigned char	*d;
+	unsigned char	*s;
+
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	if (d == s)
+		return (dst);
+	if (s < d)
 	{
 		while (n--)
-			*((unsigned char *)(dst + n)) = *((unsigned char *)(src + n));
+			d[n] = s[n];
 	}
+	else
+		ft_memcpy(d, s, n);
 	return (dst);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	char src[10] = "fatih";
-	printf("%s", ft_memmove(src + 2, src, 5));
-} */
-
-// Memcopy ile aynı işlevi yapar fakat
-// bellekte overlop olmaması için tersten kopyalar.

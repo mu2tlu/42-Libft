@@ -3,43 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 05:22:58 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 14:51:00 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:46:25 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:46:26 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
 	i = 0;
-	if (n > 0)
+	if (dstsize != 0)
 	{
-		while (i < (n - 1) && src[i])
+		while (src [i] != '\0' && i < (dstsize - 1))
 		{
-			dest[i] = src[i];
+			dst[i] = src[i];
 			i++;
 		}
-		dest[i] = '\0';
+		dst[i] = '\0';
 	}
-	return (ft_strlen (src));
+	return (ft_strlen(src));
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	char dst[] = "mu2";
-	char src[] = "fatih";
-
-	printf("%zu\n", ft_strlcpy(dst, src, 6));
-	printf("%s",dst);
-} */
-
-// "src" parametresinden gelen karakter dizisini "n" parametresindeki
-// değer kadar "dest" parametresinden gelen diziye kopyalar
-// ve src'nin uzunluğunu döndürür.

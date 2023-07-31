@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 19:44:36 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 14:32:38 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:45:54 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:45:55 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,21 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*ptr;
-	size_t	i;
+	char	*str;
+	int		i;
 
-	ptr = (char *)malloc(ft_strlen(s1) + 1);
-	if (!ptr)
-		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1[i] != 0)
+		i++;
+	str = malloc(i + 1);
+	if (str == 0)
+		return (0);
+	i = 0;
+	while (s1[i] != 0)
 	{
-		ptr[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
-	ptr[i] = 0;
-	return (ptr);
+	str[i] = 0;
+	return (str);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-
-int main(void)
-{
-	char ptr[20] = "muhammet";
-	printf("%s", ft_strdup(ptr));
-} */
-
-// "s1" parametresinden gelen dizinin bir kopyasını malloc ile açılan belleğe kopyalar.

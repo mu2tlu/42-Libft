@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:36:26 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:36:34 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:42:04 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:42:07 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_numlen(int num)
 char	*ft_itoa(int n)
 {
 	int		len;
-	char	*dizi;
+	char	*set;
 	long	nbr;
 
 	nbr = n;
@@ -40,27 +40,18 @@ char	*ft_itoa(int n)
 		len++;
 		nbr = -nbr;
 	}
-	dizi = malloc(sizeof(char) * len + 1);
-	if (!dizi)
+	set = malloc(sizeof(char) * len + 1);
+	if (!set)
 		return (NULL);
-	dizi[len] = '\0';
+	set[len] = '\0';
 	while (nbr > 0)
 	{
-		dizi[--len] = nbr % 10 + 48;
+		set[--len] = nbr % 10 + 48;
 		nbr /= 10;
 	}
 	if (n < 0)
-		dizi[0] = '-';
+		set[0] = '-';
 	if (n == 0)
-		dizi[0] = '0';
-	return (dizi);
+		set[0] = '0';
+	return (set);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	printf("%s",ft_itoa(-123));
-} */
-
-// Parametreden gelen int "n" değerini char dizisine çevirir.

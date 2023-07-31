@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 13:52:35 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:52:50 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:46:11 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:46:12 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*ptr;
+	char	*new;
+	size_t	first;
+	size_t	total;
 
-	if (!s1 || !s2)
+	first = ft_strlen(s1) + 1;
+	total = ft_strlen(s2) + first;
+	new = (char *)malloc(total * sizeof(char));
+	if (!new)
 		return (NULL);
-	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!(ptr))
-		return (NULL);
-	i = 0;
-	while (i < ft_strlen(s1))
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (i < i + ft_strlen(s2) && s2[j] != '\0')
-	{
-		ptr[i] = s2[j];
-		j++;
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	ft_strlcpy(new, s1, first);
+	ft_strlcat(new, s2, total);
+	return (new);
 }
-
-/* #include <stdio.h>
-
-int main()
-{
-	char s1[] = "Merhaba";
-	char s2[] = "42Kocaeli";
-	printf("%s",(char *)ft_strjoin(s1,s2));
-} */
-
-// "s1" ve "s2" parametrelerinden gelen karakter dizilerini birleştirerek
-// malloc ile bellekte ayırdığımız yere kopyalar.

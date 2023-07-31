@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mumutlu <mumutlu@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: mumutlu <mumutlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 03:26:12 by mumutlu           #+#    #+#             */
-/*   Updated: 2023/02/20 14:44:49 by mumutlu          ###   ########.fr       */
+/*   Created: 2023/07/31 17:46:18 by mumutlu           #+#    #+#             */
+/*   Updated: 2023/07/31 17:46:19 by mumutlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,25 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	size_t	a;
-	size_t	sizedst;
-	size_t	sizesrc;
+	size_t	s;
+	size_t	d;
+	size_t	di;
+	size_t	si;
 
-	sizedst = ft_strlen(dst);
-	sizesrc = ft_strlen(src);
-	a = ft_strlen(dst);
-	if (dstsize <= sizedst)
-		return (dstsize + sizesrc);
-	i = 0;
-	while (src[i] != '\0' && a < dstsize - 1)
+	si = ft_strlen(src);
+	if (!dst && dstsize == 0)
+		return (si);
+	d = ft_strlen(dst);
+	di = d;
+	if (dstsize <= di)
+		return (dstsize + si);
+	s = 0;
+	while (src[s] && d + 1 < dstsize)
 	{
-		dst[a] = src[i];
-		a++;
-		i++;
+		dst[d] = src[s];
+		s++;
+		d++;
 	}
-	dst[a] = '\0';
-	return (sizedst + sizesrc);
+	dst[d] = 0;
+	return (di + si);
 }
-
-/* #include <stdio.h>
-#include <string.h>
-
- int main(void)
-{
-    char str1[] = "Ali";
-    char str2[] = "Veli";
-
-    printf("%zu", ft_strlcat(str1, str2, 3));
-	printf("\n%s", str1);
-
-} */
-
-// dst dizisinin son karakteri null'dan sonra
-// src dizisini ekliyor. dst'den n kadar ilerler.
-
-// "src" parametresinden gelen karakter dizisini "dst" parametresinden gelen
-// diziye ekliyor."n" parametresi ise "dst" dizisinin maksimum boyutunu belirler.
